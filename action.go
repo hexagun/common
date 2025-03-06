@@ -1,5 +1,7 @@
 package common
 
+import "fmt"
+
 type ActionType int
 
 const (
@@ -11,6 +13,27 @@ const (
 	Move
 	Error
 )
+
+func (a ActionType) String() string {
+	switch a {
+	case GameStateUpdate:
+		return "gamestateupdate"
+	case GameOver:
+		return "gameover"
+	case Join:
+		return "join"
+	case Leave:
+		return "leave"
+	case Start:
+		return "start"
+	case Move:
+		return "move"
+	case Error:
+		return "error"
+	default:
+		return fmt.Sprintf("%d", int(a))
+	}
+}
 
 type JoinAction struct {
 	Type     ActionType
