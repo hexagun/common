@@ -19,7 +19,7 @@ type IncomingMessage struct {
 	Payload  json.RawMessage `json:"payload,omitempty"`
 }
 
-func NewOutgoingMessage(aType ActionType, gameId, playerId int, payload interface{}) *JoinAction {
+func NewOutgoingMessage(aType ActionType, gameId, playerId int, payload interface{}) *OutgoingMessage {
 	return &OutgoingMessage{
 		Type:     aType.String(),
 		GameID:   strconv.Itoa(gameId),
