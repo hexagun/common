@@ -61,7 +61,7 @@ func NewJoinAction(gameId, playerId int) *JoinAction {
 	}
 }
 
-func (a *JoinAction) GetType() ActionHeader {
+func (a *JoinAction) GetHeader() ActionHeader {
 	return a.header
 }
 
@@ -76,14 +76,14 @@ type StartAction struct {
 func NewStartAction(gameId, playerId int) *StartAction {
 	return &StartAction{
 		ActionHeader{
-			Type:     Join,
+			Type:     Start,
 			GameId:   gameId,
 			PlayerId: playerId,
 		},
 	}
 }
 
-func (a *StartAction) GetType() ActionHeader {
+func (a *StartAction) GetHeader() ActionHeader {
 	return a.header
 }
 
@@ -103,7 +103,7 @@ type PlayerMoveAction struct {
 func NewPlayerMoveAction(gameId, playerId int, payload PlayerMovePayload) *PlayerMoveAction {
 	return &PlayerMoveAction{
 		header: ActionHeader{
-			Type:     Join,
+			Type:     Move,
 			GameId:   gameId,
 			PlayerId: playerId,
 		},
@@ -112,7 +112,7 @@ func NewPlayerMoveAction(gameId, playerId int, payload PlayerMovePayload) *Playe
 	}
 }
 
-func (a *PlayerMoveAction) GetType() ActionHeader {
+func (a *PlayerMoveAction) GetHeader() ActionHeader {
 	return a.header
 }
 
@@ -134,7 +134,7 @@ type GameStateUpdateAction struct {
 func NewGameStateUpdateAction(gameId, playerId int, payload GameStateUpdatePayload) *GameStateUpdateAction {
 	return &GameStateUpdateAction{
 		header: ActionHeader{
-			Type:     Join,
+			Type:     GameStateUpdate,
 			GameId:   gameId,
 			PlayerId: playerId,
 		},
@@ -142,7 +142,7 @@ func NewGameStateUpdateAction(gameId, playerId int, payload GameStateUpdatePaylo
 	}
 }
 
-func (a *GameStateUpdateAction) GetType() ActionHeader {
+func (a *GameStateUpdateAction) GetHeader() ActionHeader {
 	return a.header
 }
 
@@ -171,7 +171,7 @@ func NewGameOverAction(gameId int, payload GameOverPayload) *GameOverAction {
 	}
 }
 
-func (a *GameOverAction) GetType() ActionHeader {
+func (a *GameOverAction) GetHeader() ActionHeader {
 	return a.header
 }
 
@@ -203,7 +203,7 @@ func NewErrorAction(message string, reason string) *ErrorAction {
 	}
 }
 
-func (a *ErrorAction) GetType() ActionHeader {
+func (a *ErrorAction) GetHeader() ActionHeader {
 	return a.header
 }
 
