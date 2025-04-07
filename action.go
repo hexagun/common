@@ -10,6 +10,7 @@ const (
 	Join
 	Leave
 	Start
+	//Assign -> extension to start
 	Move
 	Error
 )
@@ -69,17 +70,25 @@ func (a *JoinAction) GetPayload() interface{} {
 	return nil
 }
 
-type StartAction struct {
-	header ActionHeader
+type StartPayload struct {
+	YourToken  string //`json:"yourToken"`
+	OpponentID string //`json:"opponentId"`
+	FirstTurn  string //`json:"firstTurn"` // could also be a player ID
 }
 
-func NewStartAction(gameId, playerId int) *StartAction {
+type StartAction struct {
+	header  ActionHeader
+	Payload StartPayload
+}
+
+func NewStartAction(gameId, playerId int, payload StartPayload) *StartAction {
 	return &StartAction{
-		ActionHeader{
+		header: ActionHeader{
 			Type:     Start,
 			GameId:   gameId,
 			PlayerId: playerId,
 		},
+		Payload: payload,
 	}
 }
 
@@ -88,7 +97,7 @@ func (a *StartAction) GetHeader() ActionHeader {
 }
 
 func (a *StartAction) GetPayload() interface{} {
-	return nil
+	return a.Payload
 }
 
 type PlayerMovePayload struct {
