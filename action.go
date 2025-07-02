@@ -70,6 +70,29 @@ func (a *JoinAction) GetPayload() interface{} {
 	return nil
 }
 
+type LeaveAction struct {
+	header ActionHeader
+}
+
+// functional
+func NewLeaveAction(gameId, playerId int) *LeaveAction {
+	return &LeaveAction{
+		ActionHeader{
+			Type:     Leave,
+			GameId:   gameId,
+			PlayerId: playerId,
+		},
+	}
+}
+
+func (a *LeaveAction) GetHeader() ActionHeader {
+	return a.header
+}
+
+func (a *LeaveAction) GetPayload() interface{} {
+	return nil
+}
+
 type StartPayload struct {
 	YourToken  string //`json:"yourToken"`
 	OpponentID string //`json:"opponentId"`

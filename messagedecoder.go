@@ -15,6 +15,7 @@ func (g MessageDecoder) Decode(msg *IncomingMessage) Action {
 	var playerId int
 
 	if msg.GameID != "" {
+		fmt.Println("Game Id ", msg.GameID)
 		id, err := strconv.Atoi(msg.GameID)
 		if err != nil {
 			// ... handle error
@@ -24,6 +25,7 @@ func (g MessageDecoder) Decode(msg *IncomingMessage) Action {
 	}
 
 	if msg.PlayerID != "" {
+		fmt.Println("Player Id ", msg.PlayerID)
 		id, err := strconv.Atoi(msg.PlayerID)
 		if err != nil {
 			// ... handle error
